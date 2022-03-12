@@ -16,8 +16,14 @@ function init () {
     const backgroundChange = document.getElementById('shuttleBackground');
     const shuttleHeight  = document.getElementById('spaceShuttleHeight');
     const shuttle = document.getElementById('rocket');
+    let movement;
+    shuttle.style.position = 'absolute';
+    shuttle.style.left = '0px';
+    shuttle.style.botton = '0px';
 
 
+
+    
 
     takeoffButton.addEventListener("click", function (event) {
         let answer = window.confirm("Confirm that the shuttle is ready for takeoff.");
@@ -25,6 +31,7 @@ function init () {
             status.innerHTML = "Shuttle in flight.";
             backgroundChange.style.backgroundColor = "blue"
             shuttleHeight.innerHTML = 10000; 
+            // shuttle.style.botton = '10px';
         }
     });
 
@@ -47,6 +54,7 @@ function init () {
             status.innerHTML = "Mission aborted.";
             backgroundChange.style.backgroundColor = "green"
             shuttleHeight.innerHTML = 0; 
+            shuttle.style.botton = '0px';
         }
     });
 
@@ -57,6 +65,8 @@ function init () {
         height = Number(height);
         height += 10000; 
         shuttleHeight.innerHTML = height
+        movement = parseInt(shuttle.style.bottom) + 10 + 'px';
+        shuttle.style.left = movement;
     });
 
 
@@ -65,29 +75,22 @@ function init () {
         height = Number(height);
         height -= 10000; 
         shuttleHeight.innerHTML = height
-        console.log(height)
+        movement = parseInt(shuttle.style.bottom) - 10 + 'px';
+        shuttle.style.left = movement;
+        // console.log(height)
 
     });
 
 
     rightButton.addEventListener("click", function (event) {
-        let element = event.target;
-        element.style.right = 10;
-        shuttle.style.position = 'relative';
-        shuttle.style.right = 10;
-        console.log('here')
-    
+        movement = parseInt(shuttle.style.left) + 10 + 'px';
+        shuttle.style.left = movement;
     });
 
 
     leftButton.addEventListener("click", function (event) {
-        let movedPosition = 0;
-        movedPosition = parseInt(movedPosition) ; 
-        console.log(movedPosition)
-        console.log('here')
-
-        // shuttle.style.position = 'relative';
-        // shuttle.style.left = `10px`;
+        movement = parseInt(shuttle.style.left) - 10 + 'px';
+        shuttle.style.left = movement;
     });
 
 
